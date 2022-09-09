@@ -1,35 +1,35 @@
 const clientsInfo = [{
   firstName: 'ivan',
   lastName: 'ivanov',
-  phoneNumber: 819242412,
+  phoneNumber: '8192*42412',
   email: 'ivanIvanov@gmail.com',
 },
 {
   firstName: 'bivan',
   lastName: 'bivanov',
-  phoneNumber: 119242412,
+  phoneNumber: '11924241211111',
   email: 'bivanIvanov@gmail.com',
 },
 {
   firstName: 'obivan',
   lastName: 'obivanov',
-  honeNumber: 219242412,
+  honeNumber: '219242412',
   email: 'obivanIvanov@gmail.com',
 },
 {
   lastName: 'sashov',
-  phoneNumber: 319242412,
+  phoneNumber: '319242412',
   email: 'sashaSashov@gmail.com',
 },
 {
   firstName: 'sima',
-  phoneNumber: 419242412,
+  phoneNumber: '4192^42412',
   email: 'sima@gmail.com',
 },
 {
   firstName: 'pavel',
   lastName: 'pavlov',
-  phoneNumber: 519242412,
+  phoneNumber: '519242412',
   email: 'pavelPavlov@gmail.com',
 }];
 
@@ -50,25 +50,26 @@ const result = [{
   order: 'Number',
 }];
 
-// clientsInfo.forEach((el) => {
-//   console.log(el.hasOwnProperty('firstName' || 'lastName'));
-//   console.log(el.hasOwnProperty('phoneNumber'));
-// });
-
-// clientsInfo.forEach((el) => {
-//   console.log(('firstName' || 'lastName') in el);
-// });
-
-// { arrayClients.filter((el) => (('firstName' || 'lastName') && 'phoneNumber') in el); }
-
 function checkClients(arrayClients) {
+  const regexp = /\D/g;
   const rightClients = [];
   for (let i = 0; i < arrayClients.length; i += 1) {
     if ((('firstName' || 'lastName') && 'phoneNumber') in arrayClients[i]) {
       rightClients.push(arrayClients[i]);
     }
   }
-  return rightClients;
+  for (let i = 0; i < rightClients.length; i += 1) {
+    if (!regexp.test(rightClients[i].phoneNumber) || rightClients[i].phoneNumber.length > 11) {
+      delete rightClients[i];
+    }
+  }
+  return rightClients.filter((el) => el !== null);
 }
 
 console.log(checkClients(clientsInfo));
+// checkClients(clientsInfo);
+// console.log(checkPhone(clientsInfo));
+
+function final() {
+
+}
