@@ -87,5 +87,3 @@ function findLastUsers(arr) {
   return onlyTen;
 }
 console.log(findLastUsers(users));
-// const timestamp = moment(new Date(users[0].timestamp)).format('L');
-// console.log(timestamp);
