@@ -65,7 +65,8 @@ const users = [
   {
     userId: '16',
     timestamp: '1666904043687',
-  }, {
+  },
+  {
     userId: '17',
     timestamp: '1262905043687',
   },
@@ -75,12 +76,13 @@ const users = [
   },
 ];
 function findLastUsers(arr) {
+  const newArr = [];
   for (let i = 0; i < arr.length; i += 1) {
-    if (!moment(new Date(arr[i].timestamp)).isValid('L')) {
-      delete arr[i];
+    if (moment(new Date(arr[i].timestamp)).isValid('L')) {
+      newArr.push(arr[i]);
     }
   }
-  const arrFilter = arr.filter((el) => el !== null);
+  const arrFilter = newArr.filter((el) => el !== null);
   const uniqUserId = _.uniqBy(arrFilter, 'userId');
   const sortTimestamp = uniqUserId.sort((x, y) => moment(x.timestamp, 'L') - moment(y.timestamp, 'L'));
   const onlyTen = sortTimestamp.slice(0, 10);

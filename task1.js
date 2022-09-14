@@ -71,21 +71,15 @@ function checkClientsName(arrayClients) {
 
 function checkClientsPhone(arrayClients) {
   const regexp = /\D/g;
-  // const rightClients = [];
+  const rightClients = [];
   for (let i = 0; i < arrayClients.length; i += 1) {
-    if (!regexp.test(arrayClients[i].phoneNumber) || arrayClients[i].phoneNumber.length > 11) {
-      // console.log(arrayClients[i]);
-      delete arrayClients[i];
+    if (regexp.test(arrayClients[i].phoneNumber) || arrayClients[i].phoneNumber.length < 11) {
+      rightClients.push(arrayClients[i]);
     }
   }
-  return arrayClients
-    .filter((el) => el !== null)
+  return rightClients
     .map((el) => ({ ...el, phoneNumber: Number(el.phoneNumber.slice(1)) }));
 }
-
-// console.log(checkClientsPhone(checkClientsName(clientsInfo)));
-// checkClients(clientsInfo);
-// console.log(checkPhone(clientsInfo));
 
 function final(clients, orders) {
   const res = [];
